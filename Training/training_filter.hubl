@@ -1,0 +1,93 @@
+<div class="training_filter_mod_outer_wrapper">
+  <div class="page-center">
+    
+    <form class="controls" id="Filters">
+      <fieldset class="filter-group checkboxes">
+        <h4>Course Type:</h4>
+        <div class="drop-for-mob type-box" style="display: none;"><strong>Course Type:</strong> <a href="javascript:;" class="drop-down-box">Select Course Type</a></div>
+        <div class="filter-block block-1">
+        {% set types = [] %}
+          {% set eType = hubdb_table_column(1042589, 'course_type').options %}
+        {% for type in eType%}
+        {% set courseType = types.append(type.name) %}
+        {% endfor %}
+        {% set types = types|unique %}
+        <div class="checkbox">
+          <label><input type="checkbox" value="all"><span class="filter">All</span></label>
+        </div>
+        {% for type in types  %}
+        <div class="checkbox">
+          <label><input type="checkbox" value=".{{ type|lower|replace(' & ','-')|replace(' ','-')|replace("'",'') }}"> <span class="filter">{{ type }}</span></label>
+        </div>
+        {% endfor %}
+        </div>
+      </fieldset>
+      
+      <fieldset class="filter-group checkboxes">
+        <h4>Topics:</h4>
+        <div class="drop-for-mob category-box" style="display: none;"><strong>Topics:</strong> <a href="javascript:;" class="drop-down-box">Select Topics</a></div>
+        <div class="filter-block block-2">
+        {% set categories = [] %}
+          {% set quarters = hubdb_table_column(1042589, 'Categories').options %}
+           {% for category in quarters %}
+        {% set courseCategory = categories.append(category.name) %}
+        {% endfor %}
+        {% set categories = categories|unique %}
+        <div class="checkbox">
+          <label><input type="checkbox" value="all"><span class="filter">All</span></label>
+        </div>
+        {% for category in categories %}
+        <div class="checkbox">
+          <label><input type="checkbox" value=".{{ category|lower|replace(' & ','-')|replace(' ','-')|replace("'",'') }}"> <span class="filter">{{ category }}</span></label>
+        </div>
+        {% endfor %}
+        </div>
+      </fieldset>
+    </form>
+    
+    <div class="section_inner_wrapper" id="container">
+      <div class="fail-message"><span>No items were found matching the selected filters</span></div>
+      {% for row in hubdb_table_rows(1042589) %}
+      {# {% if (row.date|unixtimestamp()) >= (local_dt|unixtimestamp()) %}#}
+      <div class="mix training_item_list {% for type in row.course_type %}{{ type.name|lower|replace(' & ','-')|replace(' ','-')|replace("'",'') }}{% if not loop.last %} {% endif %}{% endfor %} {% for category in row.Categories %}{{ category.name|lower|replace(' & ','-')|replace(' ','-')|replace("'",'') }}{% if not loop.last %} {% endif %}{% endfor %}">
+        <div class="training_item_list_bg">
+          <div class="course_type">
+            {% for type in row.course_type %}
+            <h4>{{ type.name }}</h4>
+            {% endfor %}
+          </div>
+          <div class="training-data">
+            <div class="training_name">
+              <h3>{{ row.name }}</h3>
+            </div>
+            <div class="about-training">
+              <p>{{ row.content }}</p>
+            </div>
+            <div class="training_tag">
+              {% for tag in row.Formats %}
+              <span>{{ tag.name }}</span>
+              {% if not loop.last %},{% endif %}
+              {% endfor %}
+            </div>
+            <div class="training_btn">
+              <a href="{{ row.link }}" target="_blank">{{ row.link_text }}</a>
+            </div>
+            <div class="course_category">
+              <p>
+                {% for category in row.Categories %}
+                {{ category.name }}{% if not loop.last %},{% endif %}
+                {% endfor %}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      {# {% endif %}#}
+      {% endfor %}
+    </div>
+    
+  </div>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mixitup/2.1.11/jquery.mixitup.js"></script>
