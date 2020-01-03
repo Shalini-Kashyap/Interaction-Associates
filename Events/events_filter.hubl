@@ -1,0 +1,116 @@
+<div class="recent_events_mod_outer_wrapper">
+  <div class="page-center">
+    <div class="section_header_row">
+      <div class="section_header">
+        <h2>{{ module.section_header }}</h2>
+      </div>
+      <div class="section_sub_header">
+        <p>{{ module.section_sub_header }}</p>
+      </div>
+    </div>
+
+
+    <form class="controls" id="Filters">
+      <fieldset class="filter-group checkboxes">
+        <h4>Event Type:</h4>
+        <div class="drop-for-mob type-box" style="display: none;"><strong>Event Type:</strong> <a href="javascript:;" class="drop-down-box">Select Event Type</a></div>
+        <div class="filter-block block-1">
+        {% set types = [] %}
+          {% set eType = hubdb_table_column(1036471, 'event_type').options %}
+        {% for type in eType%}
+        {% set eventType = types.append(type.name) %}
+        {% endfor %}
+        {% set types = types|unique %}
+        <div class="checkbox">
+          <label><input type="checkbox" value="all"><span class="filter">All</span></label>
+        </div>
+        {% for type in types  %}
+        <div class="checkbox">
+          <label><input type="checkbox" value=".{{ type|lower|replace(' & ','-')|replace(' ','-')|replace("'",'') }}"> <span class="filter">{{ type }}</span></label>
+        </div>
+        {% endfor %}
+        </div>
+      </fieldset>
+      
+      
+      <fieldset class="filter-group checkboxes">
+        <h4>Date:</h4>
+        <div class="drop-for-mob date-box" style="display: none;"><strong>Date:</strong> <a href="javascript:;" class="drop-down-box">Select Date</a></div>
+        <div class="filter-block block-2">
+        {% set dates = [] %}
+          {% set quarters = hubdb_table_column(1036471, 'quarter_date').options %}
+           {% for date in quarters %}
+        {% set EventDate = dates.append(date.name) %}
+        {% endfor %}
+        {% set dates = dates|unique %}
+        <div class="checkbox">
+          <label><input type="checkbox" value="all"><span class="filter">All</span></label>
+        </div>
+        {% for date in dates %}
+        <div class="checkbox">
+          <label><input type="checkbox" value=".{{ date|lower|replace(' & ','-')|replace(' ','-')|replace("'",'') }}"> <span class="filter">{{ date }}</span></label>
+        </div>
+        {% endfor %}
+        </div>
+      </fieldset>
+
+      <fieldset class="filter-group checkboxes">
+        <h4>Location:</h4>
+        <div class="drop-for-mob location-box" style="display: none;"><strong>Location:</strong> <a href="javascript:;" class="drop-down-box">Select Location</a></div>
+        <div class="filter-block block-3">
+        {% set locations = [] %}
+        {% for item in hubdb_table_rows(1036471, 'orderBy=event_category') %}
+        {% for location in item.event_category %}
+        {% set eventLocation = locations.append(location.name) %}
+        {% endfor %}
+        {% endfor %}
+        {% set locations = locations|unique %}
+          <div class="checkbox">
+            <label><input type="checkbox" value="all"><span class="filter">All</span></label>
+          </div>
+        {% for location in locations %}
+          <div class="checkbox">
+            <label><input type="checkbox" value=".{{ location|lower|replace(' & ','-')|replace(' ','-')|replace("'",'') }}"> <span class="filter">{{ location }}</span></label>
+          </div>
+        {% endfor %}
+        </div>
+      </fieldset>
+    </form>
+
+    <div class="section_inner_wrapper" id="container">
+       <div class="fail-message"><span>No items were found matching the selected filters</span></div>
+      {% for row in hubdb_table_rows(1036471, "&orderBy=date") %}
+      {% if (row.date|unixtimestamp()) >= (local_dt|unixtimestamp()) %}
+      <div class="mix event_item_list {% for type in row.event_type %}{{ type.name|lower|replace(' & ','-')|replace(' ','-')|replace("'",'') }}{% if not loop.last %} {% endif %}{% endfor %} {% for date in row.quarter_date %}{{ date.name|lower|replace(' & ','-')|replace(' ','-')|replace("'",'') }}{% if not loop.last %} {% endif %}{% endfor %} {% for location in row.event_category %}{{ location.name|lower|replace(' & ','-')|replace(' ','-')|replace("'",'') }}{% if not loop.last %} {% endif %}{% endfor %}">
+        <div class="event_item_list_bg">
+          <div class="event-image">
+            <img src="{{ row.image.url }}" alt="{{ row.name }}"/>
+          </div>
+          <div class="event-date">
+            <h5>{{ row.date|datetimeformat('<strong class="date">%e</strong> <span class="month">%b</span> <span class="year">%Y</span>') }}</h5>
+          </div>
+          <div class="event-data">
+            <div class="event-location">
+              <p><i class="fa fa-map-marker" aria-hidden="true"></i> <strong>{{ row.location }}</strong></p>
+            </div>
+            <div class="event_name">
+              <h3>{{ row.name }}</h3>
+            </div>
+            <div class="about-event">
+              {{ row.content }}
+            </div>
+            <div class="event_btn">
+              <a href="{{ row.link }}" target="_blank">{{ row.link_text }} <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+       {% endif %}
+      {% endfor %}
+     
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mixitup/2.1.11/jquery.mixitup.js"></script>
+
