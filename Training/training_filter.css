@@ -1,0 +1,95 @@
+.checkbox input:checked ~ label:after{opacity: 1;}
+
+/*** Container/Target Styles*/
+#container .mix, #container .gap{display: flex;}
+#container .mix{display: none;}
+
+/*** Fail message styles*/
+#container .fail-message{position: absolute;top: 0;left: 0;bottom: 0;right: 0;text-align: center;opacity: 0;pointer-events: none; -webkit-transition: 150ms;-moz-transition: 150ms;transition: 150ms;}
+#container .fail-message:before{content: '';display: inline-block;vertical-align: middle;height: 100%;}
+#container .fail-message span{display: inline-block;vertical-align: middle;font-size: 20px;font-weight: 700;}
+#container.section_inner_wrapper.fail .fail-message{opacity: 1;pointer-events: auto;}
+
+
+.training_filter_mod_outer_wrapper{font-family: 'Roboto',sans-serif;padding: 60px 0;}
+.training_filter_mod_outer_wrapper #container.section_inner_wrapper {display: flex;flex-wrap: wrap;margin:0 -15px;padding: 2% 0;min-height: 200px;position: relative;}
+.training_filter_mod_outer_wrapper .training_item_list {max-width: 33.333%;padding:0 15px;display: flex;flex-wrap: wrap;margin:15px 0;}
+.training_filter_mod_outer_wrapper .training_item_list  .training_item_list_bg{position: relative;background:#fff;box-shadow: 0px 10px 25px 0px rgba(104,104,104,0.23);border-radius:3px;overflow:hidden;}
+.training_filter_mod_outer_wrapper .event-date {background-color: #006798;color: #fff;text-align: center; width: 72px; position: absolute; right: 20px;margin-top: -40px;padding: 9px 0;}
+.training_filter_mod_outer_wrapper .event-date h5 {text-align: center;color: #fff; margin: 0;font-size: 14px; line-height: 1.2;}
+.training_filter_mod_outer_wrapper .event-date .date { display: block;font-size: 24px;}
+.training_filter_mod_outer_wrapper .event-date span.month {display: block;text-transform: uppercase;}
+.training_filter_mod_outer_wrapper .event-date span.year {display: block;}
+.training_item_list_bg .event-data {padding: 40px;}
+.training_item_list_bg .event-data p{margin-top:0;color: #999999;}
+.training_item_list_bg .event-data .event_name h3 {color: #3e3e3e;font-size: 22px;font-weight: 700;margin: 18px 0 20px;}
+.training_item_list_bg .event-data .event-location p {color: #999999;margin:0}
+.training_item_list_bg .event-data .event-location p strong {font-weight: 400;margin: 0 0 0 3px;}
+.training_item_list_bg .event-data .about-event {margin: 0 0 25px;color: #999;line-height: 1.5;}
+.training_item_list_bg .event_btn {padding: 10px 0 10px;}
+.training_item_list .training_item_list_bg .event-image {height: 210px;}
+.training_item_list .training_item_list_bg .event-image img {display: block;object-fit: cover;height: 100%;width: 100%;}
+
+.training_filter_mod_outer_wrapper fieldset {border: none;margin: 15px 0px;text-transform: uppercase;padding:0;}
+.training_filter_mod_outer_wrapper fieldset > h4 {display: inline-block;width: 150px; padding-right: 20px;text-align: right;vertical-align: middle;font-size: 16px;color: #222;margin:0;}
+.training_filter_mod_outer_wrapper fieldset .filter-block {display: inline-block; vertical-align: middle;width: 83%;}
+.training_filter_mod_outer_wrapper fieldset .filter-block .checkbox {margin: 0 1px 8px;display: inline-block;}
+.training_filter_mod_outer_wrapper fieldset .filter-block .checkbox label{margin:0;cursor:pointer;}
+.training_filter_mod_outer_wrapper fieldset .filter-block .checkbox input[type="checkbox"] {position: absolute;opacity: 0;}
+.training_filter_mod_outer_wrapper fieldset .filter-block .checkbox span{border:1px solid #b7b7b7;display:block;border-radius:5px;padding: 10px 19px;font-size: 16px;color: #666666;transition: 0.3s ease-in-out; -webkit-transition: 0.3s ease-in-out;}
+.training_filter_mod_outer_wrapper fieldset .filter-block .checkbox input:checked ~ span.filter,.training_filter_mod_outer_wrapper fieldset .filter-block .checkbox:hover span{background-color:#006798;font-weight:600;color:#fff;border-color:#006798;}
+.training_filter_mod_outer_wrapper fieldset .filter-block.block-1 .checkbox input:checked ~ span.filter,.training_filter_mod_outer_wrapper fieldset .filter-block.block-1 .checkbox:hover span{background-color:#006798;font-weight:600;color:#fff;border-color:#006798;}
+.training_filter_mod_outer_wrapper fieldset .filter-block .checkbox:hover span,.training_filter_mod_outer_wrapper fieldset .filter-block.block-1 .checkbox:hover span{font-weight:400;}
+.training_filter_mod_outer_wrapper fieldset .filter-block.block-1 .checkbox input.checked ~ span.filter{background-color:#006798;font-weight:600;color:#fff;border-color:#006798;}
+.training_filter_mod_outer_wrapper fieldset .filter-block.block-2 .checkbox input.checked ~ span.filter,
+.training_filter_mod_outer_wrapper fieldset .filter-block.block-3 .checkbox input.checked ~ span.filter{background-color: #006798;font-weight: 600;color: #fff;border-color: #006798;}
+.training_filter_mod_outer_wrapper .training_item_list .training_item_list_bg .course_type{background:#006798; color:#fff; overflow:hidden; padding: 20px 30px}
+.training_filter_mod_outer_wrapper .training_item_list .training_item_list_bg .course_type h4{text-align:center; color:#fff; margin:0px;}
+.training_filter_mod_outer_wrapper .training_item_list .training_item_list_bg .training-data {padding: 45px 30px 10px 30px; min-height: 432px;}
+.training_filter_mod_outer_wrapper .training_item_list .training_item_list_bg .training_name h3 {color: #333333;font-size: 24px;font-weight: 700; margin:0px;}
+.training_filter_mod_outer_wrapper .training_item_list .training_item_list_bg .training_tag { font-size: 14px; font-weight: 500; color: #006798;}
+.training_filter_mod_outer_wrapper .training_item_list .training_item_list_bg .about-training p {margin: 15px 0;}
+.training_filter_mod_outer_wrapper .training_item_list .training_item_list_bg .training_btn { margin: 20px 0 0 0;}
+.training_filter_mod_outer_wrapper .training_item_list .training_item_list_bg .training_btn a {background: #006798; color: #fff; font-size: 14px; font-weight: 500;text-decoration: none; padding: 12px 25px;display: inline-block;}
+.training_filter_mod_outer_wrapper .training_item_list .training_item_list_bg .training_btn a:hover{background:#004666}
+.training_filter_mod_outer_wrapper .training_item_list .training_item_list_bg .course_category { border-top: 1px solid #d4d4d4; margin-top: 20px;}
+.training_filter_mod_outer_wrapper .training_item_list .training_item_list_bg .course_category p{margin:15px 0}
+
+@media screen and (max-width:1100px){
+.training_filter_mod_outer_wrapper fieldset .filter-block .checkbox span {padding: 10px 15px;font-size: 14px;}
+}
+@media screen and (max-width:1024px){
+.training_filter_mod_outer_wrapper .training_item_list {max-width: 50%;}
+.training_filter_mod_outer_wrapper #container.section_inner_wrapper{margin:0;justify-content:center;}  
+}
+@media screen and (max-width:991px){
+.training_filter_mod_outer_wrapper fieldset .filter-block .checkbox span {padding: 10px 15px;font-size: 12px;}
+ .training_filter_mod_outer_wrapper fieldset .filter-block {display: none;max-width: 222px;margin: 0px auto 0;border: 1px solid #a0a0a0;background-color: #f8f8f8;
+  position: absolute; left: 0; right: 0;z-index: 1;}
+.training_filter_mod_outer_wrapper fieldset>h4 {width: 100%;padding-right: 0;text-align: center;margin: 15px 0;display: none;}
+}
+@media all and (min-width:768px) and (max-width:991px){
+.training_filter_mod_outer_wrapper fieldset .drop-for-mob>strong {display: block; margin: 14px 0;}
+.training_filter_mod_outer_wrapper fieldset .drop-for-mob {display: block !important;}
+.training_filter_mod_outer_wrapper form#Filters {display: flex;width: 100%;flex-wrap: wrap;}
+.training_filter_mod_outer_wrapper form#Filters fieldset.filter-group.checkboxes { max-width: 50%; text-align: center;padding: 0 15px; position:relative;width: 100%;}
+.training_filter_mod_outer_wrapper fieldset .drop-for-mob a.drop-down-box { cursor: pointer;background-color: #f8f8f8; border: 0;outline: 0;box-shadow: inherit;padding: 18px 61px 18px 18px;font-size: 16px;font-family: 'Roboto',sans-serif; font-weight: 400;color: #222;background-image: url(https://www.interactionassociates.com/hubfs/assets/images/arrow.png); background-repeat: no-repeat; -webkit-appearance: none; -moz-appearance: none;appearance: none;background-position: right 15px center;display: block;max-width: 222px; margin: 0 auto; text-transform: none;text-align: left;text-decoration: none;}
+.training_filter_mod_outer_wrapper fieldset .filter-block .checkbox {position: relative;display: block;cursor: pointer;margin: 0;width: 100%;}
+.training_filter_mod_outer_wrapper fieldset .filter-block .checkbox span {background: #f8f8f8;text-align: left;padding: 5px 6px;font-size: 16px;font-family: 'Roboto',sans-serif;font-weight: 400;width: 100%;text-transform: none;border-radius: 0;color: #222;border: 0;}
+}
+@media screen and (max-width:767px){
+.training_filter_mod_outer_wrapper fieldset {text-align: center;}
+.training_filter_mod_outer_wrapper fieldset>h4 {width: 100%;padding-right: 0;text-align: center;margin: 15px 0;display: none;}  
+.training_filter_mod_outer_wrapper {padding: 30px 0 60px;}  
+.training_filter_mod_outer_wrapper .training_item_list {width: 400px;max-width: 96.5%;}  
+.training_item_list_bg .event-data {padding: 40px 25px;}
+.training_filter_mod_outer_wrapper fieldset .filter-block{display: none;max-width: 222px;margin: 0px auto 0;border: 1px solid #a0a0a0; background-color:#f8f8f8;}
+.training_filter_mod_outer_wrapper fieldset .drop-for-mob {display: block !important;}
+.training_filter_mod_outer_wrapper fieldset .drop-for-mob > strong{ display:block;margin: 14px 0;}
+.training_filter_mod_outer_wrapper fieldset .drop-for-mob a.drop-down-box{cursor: pointer;background-color: #f8f8f8;	border: 0;	outline: 0;	box-shadow: inherit;padding: 18px 61px 18px 18px;font-size: 16px;font-family: 'Roboto',sans-serif;font-weight: 400;	color: #222;background-image: url(https://www.interactionassociates.com/hubfs/assets/images/arrow.png);background-repeat: no-repeat;	-webkit-appearance: none;	-moz-appearance: none;	appearance: none;	background-position: right 15px center;  display: block;max-width: 222px;margin: 0 auto; text-transform:none;text-align: left; text-decoration:none;}
+.training_filter_mod_outer_wrapper fieldset .filter-block .checkbox{position: relative;display: block;cursor: pointer;margin: 0;width: 100%;}
+.training_filter_mod_outer_wrapper fieldset .filter-block .checkbox label {width: 100%;	font-size: 14px;}
+.training_filter_mod_outer_wrapper fieldset .filter-block .checkbox span {background: #f8f8f8;text-align: left;	padding: 5px 6px;	font-size: 16px;	font-family: 'Roboto',sans-serif;	font-weight: 400;	width: 100%;	text-transform: none;	border-radius: 0;	color: #222;border: 0;}
+.training_filter_mod_outer_wrapper fieldset .filter-block.block-1 .checkbox input:checked ~ span.filter, .training_filter_mod_outer_wrapper fieldset .filter-block.block-1 .checkbox:hover span {background-color:#0078d7;	color: #fff;	border-color: #0078d7;}
+.training_filter_mod_outer_wrapper .training_item_list .training_item_list_bg .training-data{min-height:auto;}
+}
